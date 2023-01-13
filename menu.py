@@ -1,5 +1,5 @@
 import json, requests
-from service import Service
+from services.validation import Service
 
 class Menus:
 

@@ -1,8 +1,4 @@
-from start import Start
-from menu import Menus
+from controller.tamagochi_controller import Tamagochi
 
-start = Start()
-name = start.presentation()
-menus = Menus(name)
-end = False
-menus.main_menu()
+tamagochi = Tamagochi()
+tamagochi.main_menu()
