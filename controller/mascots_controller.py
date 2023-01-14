@@ -12,7 +12,7 @@ class Mascots_controller:
             menu_controller.main_menu()  
         
         if len(mascots_list) == 1: 
-            menu_controller.adopted_mascots_menu(mascots_list[0].name)
+            menu_controller.interection_mascot_menu(mascots_list[0].name)
             
         Templates.show_adopted_mascots(mascots_list)
         response = input ("\nDigite o número correspondente ao mascote que você deseja ver: ")              
@@ -20,6 +20,6 @@ class Mascots_controller:
         options = Helper.counter_options(mascots_list)
         if Validation.response(response, options): 
             Helper.cls()
-            menu_controller.adopted_mascots_menu(mascots_list[int(response)-1].name)
+            menu_controller.interection_mascot_menu(mascots_list[int(response)-1].name)
         
         menu_controller.invalid_option(response)

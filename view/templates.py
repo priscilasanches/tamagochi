@@ -22,15 +22,13 @@ class Templates:
             3- Sair\n""")
 
     @staticmethod
-    def choice_mascot_menu(name):
+    def choice_mascot_menu(name, mascots_list):
+        option = 0
         print("\n--------------------------ADOTAR UM MASCOTE---------------------------")
-        print(f"""
-        {name}, qual será o seu mascote?\n
-            1- Bulbasaur
-            2- Charmander
-            3- Jigglypuff
-            4- Pikachu
-            5- Squirtle\n""")
+        print(f"\n{name}, quem será o seu mascote?", end="\n\n")
+        for mascot in mascots_list: 
+            option += 1
+            print(f"{option} - {mascot.capitalize()}")  
 
     @staticmethod
     def adoption_menu(name, mascot):
@@ -42,6 +40,17 @@ class Templates:
             3- Voltar ao menu inicial\n""")
 
     @staticmethod
+    def interection_mascot_menu(name, mascot_name):
+        print(f"---------------------------{mascot_name}---------------------------")
+        print(f"""
+        {name}, o que você quer fazer?\n
+            1- Saber como {mascot_name} está
+            2- Alimentar {mascot_name}
+            3- Brincar com {mascot_name}
+            4- Colocar {mascot_name} para dormir
+            5- Voltar ao menu inicial\n""")
+    
+    @staticmethod
     def show_infos_mascot(mascot):
         print(f"---------------------------{mascot.name}---------------------------")
         print(f"""
@@ -52,6 +61,15 @@ class Templates:
             Habilidades: {mascot.abilities} 
         """)
 
+    @staticmethod
+    def show_adopted_mascots(mascots_list):
+        option = 0
+        print("\n--------------------------MASCOTES ADOTADOS---------------------------")
+        print("\nVocê deseja saber mais sobre:\n")
+        for mascot in mascots_list: 
+            option += 1
+            print(f"{option} - {mascot.name}")  
+   
     @staticmethod
     def show_adoption_egg(name, mascot):
         print(f"""
@@ -69,15 +87,6 @@ class Templates:
     """)
 
     @staticmethod
-    def show_adopted_mascots(mascots_list):
-        option = 0
-        print("\n--------------------------MASCOTES ADOTADOS---------------------------")
-        print("\nVocê deseja saber mais sobre:\n")
-        for mascot in mascots_list: 
-            option += 1
-            print(f"{option} - {mascot.name}")      
-    
-    @staticmethod
     def invalid_option(name, option):
         print(f"""Poxa, {name}, a opção {option} não existe.
-        \nEscolha uma das opções abaixo.""")
+        \nEscolha uma das opções abaixo.\n\n""")

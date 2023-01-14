@@ -15,6 +15,4 @@ class Validation:
         
         print("O nome precisa ter no mínimo 3 e no máximo 15 caracteres.", end = "\n\n")
         return False
-    
-
-    
+        

@@ -5,3 +5,15 @@ class Mascot_model:
         self.weight = infos['weight']
         self.types = infos['types']
         self.abilities = infos['abilities']
+        self.mood = 5
+        self.hungry = 5
+        self.tiredness = 5
+    
+    def play():
+        pass
+
+    def feed():
+        pass
+
+    def sleep():
+        pass

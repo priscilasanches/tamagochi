@@ -5,12 +5,13 @@ from services.helper import Helper
 from services.get_pokemon import Get_pokemon
 from .mascots_controller import Mascots_controller
 
-class Menu_controller:
+class Tamagochi:
 
     def __init__(self):
         Helper.cls()
         Templates.start()
         self.username = self.start()
+        self.mascots_availabe = ['bulbasaur', 'charmander', 'jigglypuff', 'pikachu', 'squirtle']
         self.adopted_mascots = []
 
     def start (self):       
@@ -38,16 +39,19 @@ class Menu_controller:
         self.invalid_option(response)
         return self.main_menu()
 
-    def choice_mascot_menu(self):
-        mascots_availabe = ['bulbasaur', 'charmander', 'jigglypuff', 'pikachu', 'squirtle']
-        options = [1, 2, 3, 4, 5]
+    def choice_mascot_menu(self): 
+        if len(self.mascots_availabe) == 0:
+            print(5*"\n", f"Você já adotou todos os mascotes disponíveis. Cuide deles com carinho!\n\n")
+            return self.main_menu()
         
-        Templates.choice_mascot_menu(self.username)
-        response = input("Digite o número correspondente para ver informações do mascote: ")
+        options = Helper.counter_options(self.mascots_availabe)
+        
+        Templates.choice_mascot_menu(self.username, self.mascots_availabe)
+        response = input("\nDigite o número correspondente para ver informações do mascote: ")
         
         if Validation.response(response, options):
             Helper.cls()
-            name_chosen_mascot = mascots_availabe[int(response)-1]
+            name_chosen_mascot = self.mascots_availabe[int(response)-1]
             infos = Get_pokemon.get_infos(name_chosen_mascot)
            
             mascot = Mascot_model(infos)
@@ -63,15 +67,16 @@ class Menu_controller:
 
         Templates.adoption_menu(self.username, mascot.name)
         response = input("Digite o número correspondente: """)
-
-        if Validation.response(response, options): 
+     
+        if Validation.response(response, options):
             Helper.cls()
             match int(response):
-                case 1:    
+                case 1:
                     self.adopted_mascots.append(mascot)              
+                    self.mascots_availabe.remove(mascot.name.lower())
                     Templates.show_adoption_egg(self.username, mascot.name)
                     input("\n\n     Aperte ENTER para continuar...")
-                    Helper.cls()
+                    #Helper.cls()
                     return self.main_menu()
                 case 2:
                     return self.choice_mascot_menu()
@@ -81,9 +86,28 @@ class Menu_controller:
         self.invalid_option(response)
         return self.adoption_menu(mascot)
  
-    def adopted_mascots_menu(self, mascot):
-        print(f'implementar menu de interaçao com mascote {mascot}')
-        self.main_menu()
+    def interection_mascot_menu(self, mascot_name):
+        options = [1, 2, 3, 4, 5]
+        
+        Templates.interection_mascot_menu(self.username, mascot_name)
+        response = input("Digite sua opção: ")
+        print(response, options)
+        
+        if Validation.response(response, options):
+            Helper.cls()
+            match int(response):
+                case 1:
+                    print("Como mascote está")
+                case 2:
+                    print(f"{mascot_name} alimentado!")
+                case 3:
+                    print(f"{mascot_name} se divertiu!")
+                case 4:
+                    print(f"{mascot_name} dormindo!")
+                case 5:
+                    self.main_menu()
+
+        return self.interection_mascot_menu(mascot_name)
 
     def invalid_option(self, option):
         Helper.cls()

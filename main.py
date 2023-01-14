@@ -1,4 +1,4 @@
-from controller.menus_controller import Menu_controller
+from controller.tamagochi import Tamagochi
 
-tamagochi = Menu_controller()
+tamagochi = Tamagochi()
 tamagochi.main_menu()
