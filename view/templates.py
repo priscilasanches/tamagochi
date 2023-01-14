@@ -34,7 +34,7 @@ class Templates:
 
     @staticmethod
     def adoption_menu(name, mascot):
-        ("\n--------------------------ADOTAR UM MASCOTE---------------------------")
+        print("\n--------------------------ADOTAR UM MASCOTE---------------------------")
         print(f"""
         {name}, você deseja:\n
             1- Adotar {mascot.capitalize()}
@@ -42,14 +42,14 @@ class Templates:
             3- Voltar ao menu inicial\n""")
 
     @staticmethod
-    def show_infos_mascot(infos):
-        print(f"---------------------------{infos['name']}---------------------------")
+    def show_infos_mascot(mascot):
+        print(f"---------------------------{mascot.name}---------------------------")
         print(f"""
-            Nome do Pokemon: {infos['name']}
-            Altura: {infos['height']} 
-            Peso: {infos['weight']} 
-            Tipo: {infos['types']}
-            Habilidades: {infos['abilities']} 
+            Nome do Pokemon: {mascot.name}
+            Altura: {mascot.height} 
+            Peso: {mascot.weight} 
+            Tipo: {mascot.types}
+            Habilidades: {mascot.abilities} 
         """)
 
     @staticmethod
@@ -67,6 +67,15 @@ class Templates:
                           ██░░░░░░░░██                          
                             ████████                            
     """)
+
+    @staticmethod
+    def show_adopted_mascots(mascots_list):
+        option = 0
+        print("\n--------------------------MASCOTES ADOTADOS---------------------------")
+        print("\nVocê deseja saber mais sobre:\n")
+        for mascot in mascots_list: 
+            option += 1
+            print(f"{option} - {mascot.name}")      
     
     @staticmethod
     def invalid_option(name, option):

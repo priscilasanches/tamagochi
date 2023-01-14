@@ -1,11 +1,7 @@
-class Mascot:
-    def __init__(self, mascot):
-        self.name = mascot.capitalize()
-
-        #         Menus.show_info(self, {
-        #     'name': name,
-        #     'height': height,
-        #     'weight': weight,
-        #     'type': types,
-        #     'abilities': abilities
-        # })
+class Mascot_model:
+    def __init__(self, infos):
+        self.name = infos['name'].capitalize()
+        self.height = infos['height']
+        self.weight = infos['weight']
+        self.types = infos['types']
+        self.abilities = infos['abilities']
