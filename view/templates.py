@@ -1,3 +1,5 @@
+from services.helper import Helper
+
 class Templates:
     
     @staticmethod
@@ -58,7 +60,10 @@ class Templates:
             Altura: {mascot.height} 
             Peso: {mascot.weight} 
             Tipo: {mascot.types}
-            Habilidades: {mascot.abilities} 
+            Habilidades: {mascot.abilities}
+            Fome: {Helper.info_hungry(mascot.status["hungry"])}
+            Humor: {Helper.info_bad_mood(mascot.status["bad_mood"])}
+            Cansaço: {Helper.info_tiredness(mascot.status["tiredness"])}
         """)
 
     @staticmethod
@@ -74,7 +79,7 @@ class Templates:
     def show_adoption_egg(name, mascot):
         print(f"""
     É isso aí, {name}, {mascot.capitalize()} foi adotado com sucesso. O ovo está chocando!
-                                                           
+                                                          
                               ████                              
                             ██░░░░██                            
                           ██░░░░░░░░██                          

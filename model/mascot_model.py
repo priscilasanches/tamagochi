@@ -1,3 +1,6 @@
+import random
+from services.validation import Validation
+
 class Mascot_model:
     def __init__(self, infos):
         self.name = infos['name'].capitalize()
@@ -5,15 +8,27 @@ class Mascot_model:
         self.weight = infos['weight']
         self.types = infos['types']
         self.abilities = infos['abilities']
-        self.mood = 5
-        self.hungry = 5
-        self.tiredness = 5
-    
-    def play():
-        pass
+        self.status = {
+            "bad_mood": random.randrange(0,11),
+            "hungry": random.randrange(0,11),
+            "tiredness": random.randrange(0,11)
+        }
+        self.status_limits = [0, 10]
 
-    def feed():
-        pass
+    def play(self):
+        self.status["bad_mood"] -= 5
+        self.status["tiredness"] += 2
+        self.status["hungry"] += 3
+        
+        for value in self.status.values():
+            value = Validation.limit(value, self.limits)
 
-    def sleep():
-        pass
+    def feed(self):
+        self.status["tiredness"] += 1
+        self.status["bad_mood"] -= 2
+        self.status["hungry"] -= 5
+
+    def sleep(self):
+        self.status["tiredness"] -= 10
+        self.status["bad_mood"] += 5
+        self.status["hungry"] += 5

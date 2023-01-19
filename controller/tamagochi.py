@@ -97,7 +97,8 @@ class Tamagochi:
             Helper.cls()
             match int(response):
                 case 1:
-                    print("Como mascote está")
+                    print("Implementar helper para trazer informações do pokemon pelo nome")
+                    #Templates.show_infos_mascot(self.adopted_mascots[mascot_name])
                 case 2:
                     print(f"{mascot_name} alimentado!")
                 case 3:
