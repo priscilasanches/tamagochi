@@ -4,6 +4,7 @@ from services.validation import Validation
 from services.helper import Helper
 from services.get_pokemon import Get_pokemon
 from .mascots_controller import Mascots_controller
+import adivinhacao
 
 class Tamagochi:
 
@@ -76,7 +77,7 @@ class Tamagochi:
                     self.mascots_availabe.remove(mascot.name.lower())
                     Templates.show_adoption_egg(self.username, mascot.name)
                     input("\n\n     Aperte ENTER para continuar...")
-                    #Helper.cls()
+                    Helper.cls()
                     return self.main_menu()
                 case 2:
                     return self.choice_mascot_menu()
@@ -88,22 +89,25 @@ class Tamagochi:
  
     def interection_mascot_menu(self, mascot_name):
         options = [1, 2, 3, 4, 5]
+        mascot = Helper.get_mascot_by_name(mascot_name, self.adopted_mascots)
         
         Templates.interection_mascot_menu(self.username, mascot_name)
         response = input("Digite sua opção: ")
-        print(response, options)
         
         if Validation.response(response, options):
             Helper.cls()
             match int(response):
                 case 1:
-                    print("Implementar helper para trazer informações do pokemon pelo nome")
-                    #Templates.show_infos_mascot(self.adopted_mascots[mascot_name])
+                    Templates.show_infos_mascot(mascot)
                 case 2:
+                    mascot.feed()
                     print(f"{mascot_name} alimentado!")
                 case 3:
+                    adivinhacao.jogar()
+                    mascot.play()
                     print(f"{mascot_name} se divertiu!")
                 case 4:
+                    mascot.sleep()
                     print(f"{mascot_name} dormindo!")
                 case 5:
                     self.main_menu()

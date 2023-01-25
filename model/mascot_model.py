@@ -13,7 +13,6 @@ class Mascot_model:
             "hungry": random.randrange(0,11),
             "tiredness": random.randrange(0,11)
         }
-        self.status_limits = [0, 10]
 
     def play(self):
         self.status["bad_mood"] -= 5
@@ -21,7 +20,7 @@ class Mascot_model:
         self.status["hungry"] += 3
         
         for value in self.status.values():
-            value = Validation.limit(value, self.limits)
+            value = Validation.limit(value)
 
     def feed(self):
         self.status["tiredness"] += 1

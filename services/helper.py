@@ -39,3 +39,8 @@ class Helper():
         if value >= 2:
             return ("Está contente")
         return ("Está só alegria e felicidade.")
+
+    @staticmethod
+    def get_mascot_by_name(name_mascot, list_mascots):
+        for mascot in list_mascots:
+            if mascot.name == name_mascot: return mascot

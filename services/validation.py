@@ -17,9 +17,9 @@ class Validation:
         return False
 
     @staticmethod
-    def limit(actual_value, limit):
-        if actual_value > limit[1]:
-            return limit[1]
-        if actual_value < limit[0]:
-            return limit[0]
+    def limit(actual_value):
+        if actual_value > 10:
+            return 10
+        if actual_value < 0:
+            return 0
         return actual_value
